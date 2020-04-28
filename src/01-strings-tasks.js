@@ -131,8 +131,8 @@ function repeatString(value, count) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  return str.replace(value, '');
 }
 
 /**
@@ -146,8 +146,8 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, str.length - 1);
 }
 
 
@@ -161,8 +161,8 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(str) {
+  return str.toUpperCase();
 }
 
 /**
@@ -180,8 +180,8 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -209,6 +209,11 @@ function extractEmails(/* str */) {
  */
 function getRectangleString(/* width, height */) {
   throw new Error('Not implemented');
+  /* let string = `\u250C${'─'.repeat(width - 2)}\u2510\n`;
+  for (let i = 0; i < height - 2; i += 1) {
+    string = `${string}|${' '.repeat(width - 2)}|\n`;
+  }
+  return `${string}\u2514${'─'.repeat(width - 2)}\u2518\n`; */
 }
 
 
@@ -230,6 +235,21 @@ function getRectangleString(/* width, height */) {
  */
 function encodeToRot13(/* str */) {
   throw new Error('Not implemented');
+  /* const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let newString = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const symbolStr = str[i];
+    if (input.indexOf(symbolStr)) {
+      const number = input.indexOf(symbolStr);
+      newString = `${newString}${output[number]}`;
+    } else {
+      console.log(symbolStr);
+      newString += symbolStr;
+    }
+  }
+  console.log(newString);
+  return newString; */
 }
 
 /**
