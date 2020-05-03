@@ -207,13 +207,14 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
-  /* let string = `\u250C${'─'.repeat(width - 2)}\u2510\n`;
+function getRectangleString(width, height) {
+  let result = `┌${'─'.repeat(width - 2)}┐\n`;
   for (let i = 0; i < height - 2; i += 1) {
-    string = `${string}|${' '.repeat(width - 2)}|\n`;
+    result += `│${' '.repeat(width - 2)}│\n`;
   }
-  return `${string}\u2514${'─'.repeat(width - 2)}\u2518\n`; */
+  result += `└${'─'.repeat(width - 2)}┘\n`;
+  return result;
+  /* throw new Error('Not implemented'); */
 }
 
 
@@ -233,9 +234,8 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
-  /* const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+function encodeToRot13(str) {
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   let newString = '';
   for (let i = 0; i < str.length; i += 1) {
@@ -243,13 +243,13 @@ function encodeToRot13(/* str */) {
     if (input.indexOf(symbolStr)) {
       const number = input.indexOf(symbolStr);
       newString = `${newString}${output[number]}`;
-    } else {
-      console.log(symbolStr);
-      newString += symbolStr;
+    } else if (!input.indexOf(symbolStr)) {
+      newString = `${newString}${symbolStr}`;
     }
   }
+  console.log(str);
   console.log(newString);
-  return newString; */
+  return newString;
 }
 
 /**

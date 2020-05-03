@@ -35,8 +35,9 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const array = new Array(len).fill(0);
+  return array.map((_, i) => 2 * i + 1);
 }
 
 
@@ -472,14 +473,15 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(arr) {
-  const copy = [];
+function distinct(/* arr */) {
+  /* const copy = [];
   arr.forEach((item) => {
     if (!copy.indexOf(item)) {
       copy.push(item);
     }
   });
-  return copy;
+  return copy; */
+  throw new Error('Not implemented');
 }
 
 /**
