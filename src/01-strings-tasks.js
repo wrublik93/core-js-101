@@ -247,8 +247,6 @@ function encodeToRot13(str) {
       newString = `${newString}${symbolStr}`;
     }
   }
-  console.log(str);
-  console.log(newString);
   return newString;
 }
 
