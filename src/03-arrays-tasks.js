@@ -458,8 +458,8 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  return Array(end - start + 1).fill().map((_, idx) => start + idx);
 }
 
 /**
@@ -474,13 +474,6 @@ function getIntervalArray(/* start, end */) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(/* arr */) {
-  /* const copy = [];
-  arr.forEach((item) => {
-    if (!copy.indexOf(item)) {
-      copy.push(item);
-    }
-  });
-  return copy; */
   throw new Error('Not implemented');
 }
 

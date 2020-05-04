@@ -240,10 +240,10 @@ function encodeToRot13(str) {
   let newString = '';
   for (let i = 0; i < str.length; i += 1) {
     const symbolStr = str[i];
-    if (input.indexOf(symbolStr)) {
+    if (input.indexOf(symbolStr) !== -1) {
       const number = input.indexOf(symbolStr);
       newString = `${newString}${output[number]}`;
-    } else if (!input.indexOf(symbolStr)) {
+    } else {
       newString = `${newString}${symbolStr}`;
     }
   }
