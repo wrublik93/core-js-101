@@ -146,8 +146,9 @@ function getStringsLength(arr) {
  *    [ 1, 3, 4, 5 ], 2, 1  => [ 1, 2, 3, 4, 5 ]
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+function insertItem(arr, item, index) {
+  /* throw new Error('Not implemented'); */
+  return arr.splice(index, 0, item);
 }
 
 /**
@@ -200,8 +201,10 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  /* throw new Error('Not implemented'); */
+  const newArray = arr.map((item) => item.join(','));
+  return newArray.join('\n');
 }
 
 /**
@@ -234,8 +237,13 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  /* throw new Error('Not implemented'); */
+  let sum = 0;
+  return arr.map((item) => {
+    sum += item;
+    return sum;
+  });
 }
 
 /**
