@@ -525,8 +525,9 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  /* throw new Error('Not implemented'); */
+  return [].concat(...arr.map(childrenSelector));
 }
 
 
@@ -565,8 +566,25 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const lengthArray = arr.length;
+  let firstPart = [];
+  let secondPart = [];
+  let newArray = [];
+  if (lengthArray % 2 === 0) {
+    const center = lengthArray / 2;
+    firstPart = arr.slice(0, center);
+    secondPart = arr.slice(center);
+    newArray = secondPart.concat(firstPart);
+  }
+  if (lengthArray % 2 !== 0) {
+    const center = Math.floor(lengthArray / 2);
+    firstPart = arr.slice(0, center);
+    secondPart = arr.slice(center + 1);
+    secondPart.push(arr[center]);
+    newArray = secondPart.concat(firstPart);
+  }
+  return newArray;
 }
 
 
