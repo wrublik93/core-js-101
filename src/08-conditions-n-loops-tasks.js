@@ -133,8 +133,9 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  return !(rect2.left + rect2.width < rect1.left || rect2.top + rect2.height < rect1.top
+    || rect2.left > rect1.left + rect1.width || rect2.top > rect1.top + rect1.height);
 }
 
 
@@ -164,14 +165,11 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
-  /* const line = Math.sqrt(point.x ** 2 + point.y ** 2);
-  console.log(line);
-  if (line > circle.radius) {
-    return false;
-  }
-  return true; */
+function isInsideCircle(circle, point) {
+  const { center } = circle;
+  const a = circle.radius ** 2;
+  const line = (point.x - center.x) ** 2 + (point.y - center.y) ** 2;
+  return (line < a);
 }
 
 
@@ -311,8 +309,24 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  let sum = 0;
+  const stringCCN = ccn.toString();
+  for (let i = 0; i < stringCCN.length; i += 1) {
+    let cardNum = parseInt(stringCCN[i], 10);
+
+    if ((stringCCN.length - i) % 2 === 0) {
+      cardNum *= 2;
+
+      if (cardNum > 9) {
+        cardNum -= 9;
+      }
+    }
+
+    sum += cardNum;
+  }
+
+  return sum % 10 === 0;
 }
 
 /**
@@ -329,8 +343,13 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const reducer = (accumulator, currentValue) => +(accumulator) + +(currentValue);
+  const amount = num.toString().split('').reduce(reducer);
+  if (amount < 9) {
+    return amount;
+  }
+  return getDigitalRoot(amount);
 }
 
 
@@ -355,8 +374,26 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  let newString = str;
+  const bracketsConfig = [['()'], ['[]'], ['{}'], ['<>']];
+  while (newString.length > 0) {
+    let close = true;
+    for (let i = 0; i < bracketsConfig.length; i += 1) {
+      const item = bracketsConfig[i];
+      if (newString.includes(item)) {
+        newString = newString.replace(item, '');
+        if (newString.length === 0) {
+          return true;
+        }
+        close = false;
+      }
+    }
+    if (close) {
+      return false;
+    }
+  }
+  return newString.length === 0;
 }
 
 

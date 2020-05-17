@@ -24,7 +24,9 @@
  *
  */
 function getComposition(f, g) {
-  return (x) => f(g(x));
+  return function compose(a) {
+    return f(g(a));
+  };
 }
 
 
@@ -44,8 +46,8 @@ function getComposition(f, g) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  return (x) => x ** exponent;
 }
 
 
@@ -62,8 +64,15 @@ function getPowerFunction(/* exponent */) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...arg) {
+  /* throw new Error('Not implemented'); */
+  return (x) => {
+    let res = 0;
+    [...arg].reverse().forEach((elem, idx) => {
+      res += elem * (x ** idx);
+    });
+    return res;
+  };
 }
 
 
@@ -129,8 +138,14 @@ function retry(/* func, attempts */) {
  * cos(3.141592653589793) ends
  *
  */
-function logger(/* func, logFunc */) {
-  throw new Error('Not implemented');
+function logger(func, logFunc) {
+  return (...args) => {
+    const argum = JSON.stringify(args).slice(1, -1);
+    logFunc(`${func.name}(${argum}) starts`);
+    const result = func(...args);
+    logFunc(`${func.name}(${argum}) ends`);
+    return result;
+  };
 }
 
 
@@ -147,8 +162,8 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  return (...arg) => fn(...args1, ...arg);
 }
 
 
@@ -169,8 +184,12 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  let count = startFrom - 1;
+  return () => {
+    count += 1;
+    return count;
+  };
 }
 
 
